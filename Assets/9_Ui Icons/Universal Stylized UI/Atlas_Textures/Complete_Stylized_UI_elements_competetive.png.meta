@@ -1,9 +1,16 @@
 fileFormatVersion: 2
 guid: fd5b3f2ee238cb1498fa389b79d44ae9
+AssetOrigin:
+  serializedVersion: 1
+  productId: 270506
+  packageName: Universal Stylized UI
+  packageVersion: 1.0
+  assetPath: Assets/Universal Stylized UI/Atlas_Textures/Complete_Stylized_UI_elements_competetive.png
+  uploadId: 630075
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
-  serializedVersion: 12
+  serializedVersion: 13
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -43,7 +50,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -67,7 +74,7 @@ TextureImporter:
   swizzle: 50462976
   cookieLightType: 0
   platformSettings:
-  - serializedVersion: 3
+  - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -80,7 +87,7 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
+  - serializedVersion: 4
     buildTarget: Standalone
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -93,8 +100,21 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
+  - serializedVersion: 4
     buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -108,8 +128,185 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Complete_Stylized_UI_elements_competetive_9
+      rect:
+        serializedVersion: 2
+        x: 108
+        y: 1163
+        width: 1035
+        height: 1035
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 84fedbedbcd4ed342afb5875ded52b75
+      internalID: -538268276
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Complete_Stylized_UI_elements_competetive_49
+      rect:
+        serializedVersion: 2
+        x: 67
+        y: 789
+        width: 276
+        height: 280
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b2b1896dfcde77742b9ecaf78c1af23e
+      internalID: 691791330
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Complete_Stylized_UI_elements_competetive_52
+      rect:
+        serializedVersion: 2
+        x: 419
+        y: 738
+        width: 828
+        height: 345
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 45a4ae518b2b76d45a56e4d77fd3268f
+      internalID: 332411426
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Complete_Stylized_UI_elements_competetive_57
+      rect:
+        serializedVersion: 2
+        x: 68
+        y: 483
+        width: 275
+        height: 282
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5d322e99ed96c614fa4ea66fc0b02957
+      internalID: 627281776
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Complete_Stylized_UI_elements_competetive_62
+      rect:
+        serializedVersion: 2
+        x: 434
+        y: 483
+        width: 811
+        height: 225
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4d60ab6e86b26464ba0c96d78fb295d8
+      internalID: 1539572051
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Complete_Stylized_UI_elements_competetive_69
+      rect:
+        serializedVersion: 2
+        x: 433
+        y: 243
+        width: 812
+        height: 227
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 27dc753e9d1f17a42a9c3efa89990650
+      internalID: 1625202633
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Complete_Stylized_UI_elements_competetive_71
+      rect:
+        serializedVersion: 2
+        x: 60
+        y: 174
+        width: 292
+        height: 261
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bc7d18ee6890aa74cad9682a05e2e6cc
+      internalID: 1516892949
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Complete_Stylized_UI_elements_competetive_76
+      rect:
+        serializedVersion: 2
+        x: 433
+        y: 5
+        width: 812
+        height: 226
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d995f1184be184342a78ba0557932b99
+      internalID: -2095920838
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
+    customData: 
     physicsShape: []
     bones: []
     spriteID: 5e97eb03825dee720800000000000000
@@ -119,16 +316,92 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    spriteCustomMetadata:
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":0,"keepEmptyRects":false,"isAlternate":false}'
+    nameFileIdTable:
+      Complete_Stylized_UI_elements_competetive_0: 2000225368
+      Complete_Stylized_UI_elements_competetive_1: -1189769875
+      Complete_Stylized_UI_elements_competetive_10: -1381444083
+      Complete_Stylized_UI_elements_competetive_11: 543516868
+      Complete_Stylized_UI_elements_competetive_12: 1118085551
+      Complete_Stylized_UI_elements_competetive_13: 1670164487
+      Complete_Stylized_UI_elements_competetive_14: 982573114
+      Complete_Stylized_UI_elements_competetive_15: -505802489
+      Complete_Stylized_UI_elements_competetive_16: -650889858
+      Complete_Stylized_UI_elements_competetive_17: -1611045184
+      Complete_Stylized_UI_elements_competetive_18: 442084579
+      Complete_Stylized_UI_elements_competetive_19: -356295104
+      Complete_Stylized_UI_elements_competetive_2: 1831290791
+      Complete_Stylized_UI_elements_competetive_20: -500331556
+      Complete_Stylized_UI_elements_competetive_21: 1841900714
+      Complete_Stylized_UI_elements_competetive_22: 402265798
+      Complete_Stylized_UI_elements_competetive_23: -544664758
+      Complete_Stylized_UI_elements_competetive_24: -756385480
+      Complete_Stylized_UI_elements_competetive_25: 1199496126
+      Complete_Stylized_UI_elements_competetive_26: 177839957
+      Complete_Stylized_UI_elements_competetive_27: 1167424133
+      Complete_Stylized_UI_elements_competetive_28: -426608935
+      Complete_Stylized_UI_elements_competetive_29: 1854411497
+      Complete_Stylized_UI_elements_competetive_3: 1785236057
+      Complete_Stylized_UI_elements_competetive_30: -1149451809
+      Complete_Stylized_UI_elements_competetive_31: 149777663
+      Complete_Stylized_UI_elements_competetive_32: 791542051
+      Complete_Stylized_UI_elements_competetive_33: -1161284077
+      Complete_Stylized_UI_elements_competetive_34: -1163682654
+      Complete_Stylized_UI_elements_competetive_35: -103613572
+      Complete_Stylized_UI_elements_competetive_36: 1389563730
+      Complete_Stylized_UI_elements_competetive_37: -1237766269
+      Complete_Stylized_UI_elements_competetive_38: -1839866326
+      Complete_Stylized_UI_elements_competetive_39: 1697022212
+      Complete_Stylized_UI_elements_competetive_4: -1487674131
+      Complete_Stylized_UI_elements_competetive_40: -1052373702
+      Complete_Stylized_UI_elements_competetive_41: 1025451798
+      Complete_Stylized_UI_elements_competetive_42: 357842333
+      Complete_Stylized_UI_elements_competetive_43: 1756201796
+      Complete_Stylized_UI_elements_competetive_44: -544760902
+      Complete_Stylized_UI_elements_competetive_45: 360015391
+      Complete_Stylized_UI_elements_competetive_46: -379047076
+      Complete_Stylized_UI_elements_competetive_47: 1093817200
+      Complete_Stylized_UI_elements_competetive_48: -95748301
+      Complete_Stylized_UI_elements_competetive_49: 691791330
+      Complete_Stylized_UI_elements_competetive_5: 269846488
+      Complete_Stylized_UI_elements_competetive_50: 255901972
+      Complete_Stylized_UI_elements_competetive_51: -1011166433
+      Complete_Stylized_UI_elements_competetive_52: 332411426
+      Complete_Stylized_UI_elements_competetive_53: -2003808313
+      Complete_Stylized_UI_elements_competetive_54: -43578036
+      Complete_Stylized_UI_elements_competetive_55: 1654537513
+      Complete_Stylized_UI_elements_competetive_56: -1741631400
+      Complete_Stylized_UI_elements_competetive_57: 627281776
+      Complete_Stylized_UI_elements_competetive_58: -225781670
+      Complete_Stylized_UI_elements_competetive_59: 1102127700
+      Complete_Stylized_UI_elements_competetive_6: 1254667522
+      Complete_Stylized_UI_elements_competetive_60: -160551415
+      Complete_Stylized_UI_elements_competetive_61: 957250711
+      Complete_Stylized_UI_elements_competetive_62: 1539572051
+      Complete_Stylized_UI_elements_competetive_63: -30582061
+      Complete_Stylized_UI_elements_competetive_64: -1863317051
+      Complete_Stylized_UI_elements_competetive_65: -2086784635
+      Complete_Stylized_UI_elements_competetive_66: 800942274
+      Complete_Stylized_UI_elements_competetive_67: 1041545390
+      Complete_Stylized_UI_elements_competetive_68: 2071848324
+      Complete_Stylized_UI_elements_competetive_69: 1625202633
+      Complete_Stylized_UI_elements_competetive_7: -1321747213
+      Complete_Stylized_UI_elements_competetive_70: 1132230662
+      Complete_Stylized_UI_elements_competetive_71: 1516892949
+      Complete_Stylized_UI_elements_competetive_72: -1255871839
+      Complete_Stylized_UI_elements_competetive_73: -28934938
+      Complete_Stylized_UI_elements_competetive_74: 1653189938
+      Complete_Stylized_UI_elements_competetive_75: 1244991881
+      Complete_Stylized_UI_elements_competetive_76: -2095920838
+      Complete_Stylized_UI_elements_competetive_77: -834636251
+      Complete_Stylized_UI_elements_competetive_78: -519409326
+      Complete_Stylized_UI_elements_competetive_8: -1108434175
+      Complete_Stylized_UI_elements_competetive_9: -538268276
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 
-AssetOrigin:
-  serializedVersion: 1
-  productId: 270506
-  packageName: Universal Stylized UI
-  packageVersion: 1.0
-  assetPath: Assets/Universal Stylized UI/Atlas_Textures/Complete_Stylized_UI_elements_competetive.png
-  uploadId: 630075
