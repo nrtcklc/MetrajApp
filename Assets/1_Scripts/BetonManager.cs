@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
@@ -32,6 +33,20 @@ public class BetonManager : MonoBehaviour
 
     [SerializeField] RectTransform listParentAnim;
     [SerializeField] float animSure = 0.25f;
+
+    [Serializable]
+    public class BetonDetayData
+    {
+        public List<BetonSatirData> satirlar = new List<BetonSatirData>();
+    }
+
+    [Serializable]
+    public class BetonSatirData
+    {
+        public string metrajAdi;
+        public string hesapOzet;
+        public float hacim;
+    }
 
 
     public void YeniMetrajEkle()
@@ -81,13 +96,30 @@ public class BetonManager : MonoBehaviour
     }
     float GetFloatOrOne(string deger)
     {
-        if (string.IsNullOrEmpty(deger))
+        if (string.IsNullOrWhiteSpace(deger))
             return 1f;
 
+        deger = deger.Trim();
+
+        // 1 Önce cihazýn culture'ý ile dene (Türkçe cihazda 3,5 düzgün parse olur)
+        if (float.TryParse(deger,
+            NumberStyles.Any,
+            CultureInfo.CurrentCulture,
+            out float sonuc))
+            return sonuc;
+
+        // 2 Olmazsa evrensel format ile dene (3.5 gibi)
+        if (float.TryParse(deger,
+            NumberStyles.Any,
+            CultureInfo.InvariantCulture,
+            out sonuc))
+            return sonuc;
+
+        // 3 Son çare: virgül noktaya çevirip tekrar dene
         if (float.TryParse(deger.Replace(",", "."),
             NumberStyles.Any,
             CultureInfo.InvariantCulture,
-            out float sonuc))
+            out sonuc))
             return sonuc;
 
         return 1f;
@@ -139,7 +171,7 @@ public class BetonManager : MonoBehaviour
 
         txtToplamBeton.transform.localScale = normal;
     }
-    void InputlariTemizle()
+    public void InputlariTemizle()
     {
         inputMetrajAdi.text = "";
         inputBenzer.text = "";
@@ -172,5 +204,69 @@ public class BetonManager : MonoBehaviour
 
         listParentAnim.anchoredPosition = hedef;
     }
+    // --------------------------------------------------
+    // KAYIT SÝSTEMÝ ÝÇÝN EKLENEN FONKSÝYONLAR
+    // --------------------------------------------------
 
+    public float GetToplamMetrajValue()
+    {
+        float toplam = 0f;
+
+        foreach (var s in satirlar)
+            toplam += s.GetHacim();
+
+        return toplam;
+    }
+
+    public string GetBetonDetayJson()
+    {
+        BetonDetayData data = new BetonDetayData();
+
+        foreach (var s in satirlar)
+        {
+            BetonSatirData satirData = new BetonSatirData();
+            satirData.metrajAdi = s.GetMetrajAdi();
+            satirData.hesapOzet = s.GetHesapOzet();
+            satirData.hacim = s.GetHacim();
+
+            data.satirlar.Add(satirData);
+        }
+
+        return JsonUtility.ToJson(data);
+    }
+
+    public void LoadFromBetonJson(string json)
+    {
+        // Önce mevcut satýrlarý temizle
+        foreach (var s in satirlar)
+            Destroy(s.gameObject);
+
+        satirlar.Clear();
+
+        BetonDetayData data = JsonUtility.FromJson<BetonDetayData>(json);
+
+        if (data == null || data.satirlar == null)
+            return;
+
+        foreach (var d in data.satirlar)
+        {
+            GameObject yeni = Instantiate(satirPrefab, listParent, false);
+            MetrajSatir satir = yeni.GetComponent<MetrajSatir>();
+
+            satir.Setup(d.metrajAdi, d.hesapOzet, d.hacim, this);
+            satirlar.Add(satir);
+        }
+
+        ToplamGuncelle();
+
+    }
+
+    public void TumSatirlariTemizle()
+    {
+        foreach (var s in satirlar)
+            Destroy(s.gameObject);
+
+        satirlar.Clear();
+        ToplamGuncelle();
+    }
 }

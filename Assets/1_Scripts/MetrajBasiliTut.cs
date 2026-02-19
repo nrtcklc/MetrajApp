@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class BasiliTutSil : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
+public class MetrajBasiliTut : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
     [SerializeField]
     Image doldurulacakDaire;
@@ -12,7 +12,7 @@ public class BasiliTutSil : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
     float basilitutmaSuresi;
     float toplamBasilacakSure = 1f;
 
-    MetrajSatir metrajSatir;
+    MetrajKayitSatirUI metrajKayitSatirUi;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -27,8 +27,8 @@ public class BasiliTutSil : MonoBehaviour, IPointerDownHandler, IPointerUpHandle
             if (basilitutmaSuresi >= toplamBasilacakSure)
             {
                 butonbasilimi = false;
-                metrajSatir = GetComponentInParent<MetrajSatir>();
-                metrajSatir.Sil();
+                metrajKayitSatirUi = GetComponentInParent<MetrajKayitSatirUI>();
+                metrajKayitSatirUi.Sil();
             }
             doldurulacakDaire.fillAmount = basilitutmaSuresi / toplamBasilacakSure;
         }
