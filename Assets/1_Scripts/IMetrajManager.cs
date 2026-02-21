@@ -1,5 +1,5 @@
 using UnityEngine;
-
+using System.Collections.Generic;
 public interface IMetrajManager
 {
     // Satýr silme iþlemi (MetrajSatir tarafýndan çaðrýlýr)
@@ -16,4 +16,6 @@ public interface IMetrajManager
 
     // Tüm satýrlarý temizler
     void TumSatirlariTemizle();
+
+    string GetMetrajTuru();
 }

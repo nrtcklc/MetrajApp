@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7599179389461788056}
   - component: {fileID: 2625011006145516154}
   m_Layer: 5
-  m_Name: KalipMetraj
+  m_Name: MetrajHesapSatir
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -3,6 +3,7 @@ using System.Collections;
 
 public class AnaMenuManager : MonoBehaviour
 {
+    public IMetrajManager aktifManager;
     ///ana Menü Slider'ı için fonksiyon
 
     public RectTransform obje1;
@@ -13,10 +14,29 @@ public class AnaMenuManager : MonoBehaviour
     public RectTransform obje6;
     public RectTransform obje7;
 
+    private int aktifPanelIndex;
+
     void Start()
     {
         StartCoroutine(Animasyon());
     }
+
+
+    [SerializeField] private GameObject[] paneller;
+
+    public void PanelAc(int panelIndex)
+    {
+        for (int i = 0; i < paneller.Length; i++)
+            paneller[i].SetActive(i == panelIndex);
+
+        aktifPanelIndex = panelIndex;
+    }
+
+    public int GetAktifPanelIndex()
+    {
+        return aktifPanelIndex;
+    }
+
 
     IEnumerator Animasyon()
     {
@@ -102,23 +122,5 @@ public class AnaMenuManager : MonoBehaviour
             obje.localScale = Vector3.Lerp(Vector3.one * 1.15f, Vector3.one, t2);
         }
     }
-
-
-
-
-
-   [SerializeField] private GameObject[] paneller;
-
-    public void PanelAc(int panelIndex)
-    {
-        if (panelIndex < 0 || panelIndex >= paneller.Length)
-            return;
-
-        for (int i = 0; i < paneller.Length; i++)
-        {
-            paneller[i].SetActive(i == panelIndex);
-        }
-    }
-    
 
 }

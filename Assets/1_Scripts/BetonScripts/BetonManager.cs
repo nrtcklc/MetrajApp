@@ -305,4 +305,8 @@ public class BetonManager : MonoBehaviour, IMetrajManager
     {
         LoadFromBetonJson(json);
     }
+    public string GetMetrajTuru()
+    {
+        return "Beton";
+    }
 }

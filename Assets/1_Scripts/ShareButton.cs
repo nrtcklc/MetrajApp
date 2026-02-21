@@ -14,10 +14,9 @@ public class ShareButton : MonoBehaviour
             return;
         }
 
-        manager.ShareBetonKaydi(
-            kayitData.kayitAdi,
-            kayitData.detayJson,
-            kayitData.toplamMetraj
-        );
+        manager.ShareKayit(
+    kayitData.kayitAdi,
+    kayitData.kayitTuru,
+    kayitData.detayJson);
     }
 }

@@ -919,7 +919,7 @@ GameObject:
   - component: {fileID: 4841451660929940091}
   - component: {fileID: 88769438319223879}
   m_Layer: 5
-  m_Name: "MetrajSat\u0131r"
+  m_Name: "MetrajKayitSat\u0131r"
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
