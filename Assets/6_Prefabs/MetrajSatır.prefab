@@ -1005,6 +1005,8 @@ MonoBehaviour:
   txtTur: {fileID: 6126658666991728765}
   txtTarih: {fileID: 2048704997419914541}
   txtToplam: {fileID: 7214242238808200549}
+  anaMenuManager: {fileID: 0}
+  betonPanelIndex: 2
 --- !u!114 &88769438319223879
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1326,13 +1328,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 4841451660929940091}
         m_TargetAssemblyTypeName: MetrajKayitSatirUI, Assembly-CSharp
-        m_MethodName: 
+        m_MethodName: Duzenle
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 

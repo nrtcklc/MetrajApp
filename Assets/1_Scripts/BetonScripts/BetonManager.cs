@@ -6,7 +6,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class BetonManager : MonoBehaviour
+public class BetonManager : MonoBehaviour, IMetrajManager
 {
     [Header("Metraj Bilgileri")]
     public TMP_InputField inputMetrajAdi;
@@ -33,22 +33,6 @@ public class BetonManager : MonoBehaviour
 
     [SerializeField] RectTransform listParentAnim;
     [SerializeField] float animSure = 0.25f;
-
-    [Serializable]
-    public class BetonDetayData
-    {
-        public List<BetonSatirData> satirlar = new List<BetonSatirData>();
-    }
-
-    [Serializable]
-    public class BetonSatirData
-    {
-        public string metrajAdi;
-        public string hesapOzet;
-        public float hacim;
-    }
-
-
     public void YeniMetrajEkle()
     {
         // --- METRAJ ADI ---
@@ -84,9 +68,6 @@ public class BetonManager : MonoBehaviour
         Canvas.ForceUpdateCanvases();
         scrollRect.verticalNormalizedPosition = 1f;
         StartCoroutine(ContentAsagiKay());
-
-
-        int id = satirlar.Count;
 
         satir.Setup(metrajAdi, hesapOzet, hacim, this);
         satirlar.Add(satir);
@@ -225,8 +206,19 @@ public class BetonManager : MonoBehaviour
         foreach (var s in satirlar)
         {
             BetonSatirData satirData = new BetonSatirData();
+
             satirData.metrajAdi = s.GetMetrajAdi();
+
+            // Yeni sistem
+            satirData.benzer = s.GetBenzer();
+            satirData.adet = s.GetAdet();
+            satirData.en = s.GetEn();
+            satirData.boy = s.GetBoy();
+            satirData.yukseklik = s.GetYukseklik();
+
+            // Eski sistem (þimdilik kalsýn)
             satirData.hesapOzet = s.GetHesapOzet();
+
             satirData.hacim = s.GetHacim();
 
             data.satirlar.Add(satirData);
@@ -253,9 +245,23 @@ public class BetonManager : MonoBehaviour
             GameObject yeni = Instantiate(satirPrefab, listParent, false);
             MetrajSatir satir = yeni.GetComponent<MetrajSatir>();
 
-            satir.Setup(d.metrajAdi, d.hesapOzet, d.hacim, this);
+            // ARTIK STRING SETUP YOK
+            satir.SetupNumeric(
+                d.metrajAdi,
+                d.benzer,
+                d.adet,
+                d.en,
+                d.boy,
+                d.yukseklik,
+                d.hacim,
+                this
+            );
+
             satirlar.Add(satir);
         }
+
+        //Sayaç güncelle
+        otomatikIsimSayac = satirlar.Count + 1;
 
         ToplamGuncelle();
 
@@ -267,6 +273,36 @@ public class BetonManager : MonoBehaviour
             Destroy(s.gameObject);
 
         satirlar.Clear();
+
+        // Sayaç reset
+        otomatikIsimSayac = 1;
+
         ToplamGuncelle();
+    }
+
+    void OnEnable()
+    {
+        if (!string.IsNullOrEmpty(MetrajKayitManager.duzenlemeJson))
+        {
+            string json = MetrajKayitManager.duzenlemeJson;
+            MetrajKayitManager.duzenlemeJson = null;
+
+            LoadFromBetonJson(json);
+        }
+        else
+        {
+            // Boþ deðil, ama kullanýcýya "hiç metraj yok" mesajý gösterebilirsin
+            // veya default bir satýr ekleyebilirsin
+            InputlariTemizle();
+        }
+    }
+    public string GetDetayJson()
+    {
+        return GetBetonDetayJson();
+    }
+
+    public void LoadFromJson(string json)
+    {
+        LoadFromBetonJson(json);
     }
 }

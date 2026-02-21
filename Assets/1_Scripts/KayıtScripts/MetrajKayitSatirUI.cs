@@ -18,7 +18,8 @@ public class MetrajKayitSatirUI : MonoBehaviour
 
     MetrajKayitData mevcutKayit;
     MetrajKayitManager manager;
-
+    [SerializeField] private AnaMenuManager anaMenuManager; // PanelAc olan script
+    [SerializeField] private int betonPanelIndex = 2;
     public void Setup(MetrajKayitData data,
                   MetrajKayitManager manager,
                   BetonManager beton)
@@ -53,9 +54,14 @@ public class MetrajKayitSatirUI : MonoBehaviour
     // -------------------
     public void Duzenle()
     {
-        betonManager.LoadFromBetonJson(detayJson);
+        if (anaMenuManager == null)
+            anaMenuManager = FindObjectOfType<AnaMenuManager>();
 
-        // burada beton sayfasýný açtýrýyorsan onu da çaðýrabilirsin
+        if (betonManager == null)
+            betonManager = FindObjectOfType<BetonManager>();
+
+        anaMenuManager.PanelAc(2);
+        betonManager.LoadFromBetonJson(detayJson);
     }
 
     // -------------------

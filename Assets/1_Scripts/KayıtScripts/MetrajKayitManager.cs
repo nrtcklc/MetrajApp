@@ -15,6 +15,10 @@ public class MetrajKayitManager : MonoBehaviour
     public Transform listParent;
     public BetonManager betonManager;
 
+
+    public static string duzenlemeJson;
+
+
     void Awake()
     {
         path = Application.persistentDataPath + "/metraj_kayitlar.json";
@@ -41,6 +45,7 @@ public class MetrajKayitManager : MonoBehaviour
         kayitList.kayitlar.Add(yeni);
 
         Kaydet();
+        ListeyiDoldur(); 
         betonManager.InputlariTemizle();
     }
 
@@ -68,6 +73,7 @@ public class MetrajKayitManager : MonoBehaviour
     {
         string json = JsonUtility.ToJson(kayitList, true);
         File.WriteAllText(path, json);
+        Debug.Log("Kayýtlar kaydedildi: ");
     }
 
     // --------------------
