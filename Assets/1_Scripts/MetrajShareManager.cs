@@ -56,7 +56,7 @@ public class MetrajShareManager : MonoBehaviour
 
             int lastDataRow = 3 + data.satirlar.Count;
             string toplamFormula =
-                $"=TOPLA(G{firstDataRow}:G{lastDataRow})";
+                $"=TOPLA(F{firstDataRow}:F{lastDataRow})";
 
             csv.AppendLine(
                 "Kayýt Adý;" + kayitAdi +
