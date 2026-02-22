@@ -278,6 +278,7 @@ public class BetonManager : MonoBehaviour, IMetrajManager
         otomatikIsimSayac = 1;
 
         ToplamGuncelle();
+        Debug.Log("Tüm satýrlar temizlendi.");
     }
 
     void OnEnable()

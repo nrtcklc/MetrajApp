@@ -198,7 +198,7 @@ public class KalipManager : MonoBehaviour, IMetrajManager
     // --------------------------------------------------
     // INPUT TEMÝZLE
     // --------------------------------------------------
-    void InputlariTemizle()
+    public void InputlariTemizle()
     {
         inputMetrajAdi.text = "";
         inputBenzer.text = "";
