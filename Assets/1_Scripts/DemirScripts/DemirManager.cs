@@ -1,7 +1,9 @@
-﻿using UnityEngine;
-using TMPro;
+﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
+using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class DemirManager : MonoBehaviour, IMetrajManager
 {
@@ -26,6 +28,11 @@ public class DemirManager : MonoBehaviour, IMetrajManager
     public AudioSource audioSource;
     public AudioClip clickSound;
 
+    [Header("Animasyon")]
+    public RectTransform listParentAnim; // satirParent'ın RectTransform'u
+    public float animSure = 0.2f;
+
+
     private List<int> mevcutCaplar = new List<int>()
     { 8, 10, 12, 14, 16, 18, 20, 22, 25, 26, 28, 32, 34, 36, 38, 40 };
 
@@ -43,11 +50,17 @@ public class DemirManager : MonoBehaviour, IMetrajManager
         CapButonlariniOlustur();
         capPanel.SetActive(false);
 
-        Vurgula(varsayilanCap);
         inputCap.readOnly = true;
+        inputCap.onSelect.AddListener(KlavyeKapat);
     }
 
     #region CAP PANEL
+
+    void KlavyeKapat(string value)
+    {
+        inputCap.DeactivateInputField();
+        EventSystem.current.SetSelectedGameObject(null);
+    }
 
     public void PanelAc()
     {
@@ -141,8 +154,7 @@ public class DemirManager : MonoBehaviour, IMetrajManager
         float capMetre = capMm / 1000f;
         float yaricap = capMetre / 2f;
         float hacim = Mathf.PI * yaricap * yaricap * boy;
-        float toplamKg = hacim * ozgulAgirlik * adet * benzer;
-        float ton = toplamKg / 1000f;
+        float Kg = hacim * ozgulAgirlik * adet * benzer;
 
         string metrajAdi = inputMetrajAdi.text;
 
@@ -152,7 +164,7 @@ public class DemirManager : MonoBehaviour, IMetrajManager
             otomatikIsimSayac++;
         }
 
-        SatirEkle(metrajAdi, capMm, benzer, adet, boy, ton);
+        SatirEkle(metrajAdi, capMm, benzer, adet, boy, Kg);
 
         InputTemizle();
         GenelToplamGuncelle();
@@ -236,18 +248,58 @@ public class DemirManager : MonoBehaviour, IMetrajManager
 
     #region PRIVATE
 
-    private void SatirEkle(string ad, float cap, float benzer, float adet, float boy, float ton)
+    private void SatirEkle(string ad, float cap, float benzer, float adet, float boy, float kg)
     {
         GameObject yeni = Instantiate(metrajSatirPrefab, satirParent);
-        MetrajSatir satir = yeni.GetComponent<MetrajSatir>();
+        yeni.transform.SetSiblingIndex(0);
 
-        satir.SetupNumeric(ad, cap, benzer, adet, boy, 1f, ton, this);
+        yeni.SetActive(false); // 👈 ilk frame gizle
+
+        MetrajSatir satir = yeni.GetComponent<MetrajSatir>();
+        satir.SetupNumeric(ad, cap, benzer, adet, boy, 1f, kg, this);
+
         satirlar.Add(satir);
+
+        StartCoroutine(SatirAnimasyon(yeni));
+    }
+    IEnumerator SatirAnimasyon(GameObject yeniSatir)
+    {
+        // Layout yerleşsin
+        LayoutRebuilder.ForceRebuildLayoutImmediate(listParentAnim);
+
+        yield return null; // 1 frame bekle
+
+        yeniSatir.SetActive(true); // 👈 artık görünür
+
+        float satirYukseklik =
+            ((RectTransform)satirParent.GetChild(0)).rect.height;
+
+        Vector2 hedef = listParentAnim.anchoredPosition;
+        Vector2 baslangic = hedef + Vector2.up * satirYukseklik;
+
+        listParentAnim.anchoredPosition = baslangic;
+
+        float t = 0f;
+
+        while (t < animSure)
+        {
+            t += Time.deltaTime;
+            float oran = t / animSure;
+
+            oran = 1f - Mathf.Pow(1f - oran, 2f); // hafif ease-out
+
+            listParentAnim.anchoredPosition =
+                Vector2.Lerp(baslangic, hedef, oran);
+
+            yield return null;
+        }
+
+        listParentAnim.anchoredPosition = hedef;
     }
 
     private void GenelToplamGuncelle()
     {
-        txtGenelToplam.text = GetGenelToplam().ToString("F2") + " ton";
+        txtGenelToplam.text = "Toplam Metraj: " + GetGenelToplam().ToString("F2") + " Kg";
     }
 
     public void InputTemizle()

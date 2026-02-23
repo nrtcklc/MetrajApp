@@ -442,7 +442,7 @@ MonoBehaviour:
     m_Right: 10
     m_Top: 0
     m_Bottom: 0
-  m_ChildAlignment: 1
+  m_ChildAlignment: 0
   m_Spacing: 5
   m_ChildForceExpandWidth: 0
   m_ChildForceExpandHeight: 0
@@ -4539,6 +4539,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1935830076}
+        m_TargetAssemblyTypeName: KayitPopupController, Assembly-CSharp
+        m_MethodName: OtomatikKapanmayiIptalEt
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!222 &328080428
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4590,6 +4602,8 @@ MonoBehaviour:
   capButtonPrefab: {fileID: 6549154168112870028, guid: fbf971c871d0e2e4d87be770549d1bd1, type: 3}
   audioSource: {fileID: 329147525}
   clickSound: {fileID: 8300000, guid: f0698e802cf1e24408c49b93527f7c64, type: 3}
+  listParentAnim: {fileID: 11301126}
+  animSure: 0.2
 --- !u!4 &329147524
 Transform:
   m_ObjectHideFlags: 0
@@ -15540,6 +15554,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1935830076}
+        m_TargetAssemblyTypeName: KayitPopupController, Assembly-CSharp
+        m_MethodName: OtomatikKapanmayiIptalEt
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!222 &1071267612
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -16283,7 +16309,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Toplam Metraj: 0,00 ton'
+  m_text: 'Toplam Metraj: 0,00 Kg'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0161d805a3764c089bef00bfe00793f5, type: 2}
   m_sharedMaterial: {fileID: 2147374, guid: 0161d805a3764c089bef00bfe00793f5, type: 2}
@@ -17795,6 +17821,18 @@ MonoBehaviour:
       - m_Target: {fileID: 329147523}
         m_TargetAssemblyTypeName: DemirManager, Assembly-CSharp
         m_MethodName: PanelKapat
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1935830076}
+        m_TargetAssemblyTypeName: KayitPopupController, Assembly-CSharp
+        m_MethodName: OtomatikKapanmayiIptalEt
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -21148,6 +21186,18 @@ MonoBehaviour:
       - m_Target: {fileID: 329147523}
         m_TargetAssemblyTypeName: DemirManager, Assembly-CSharp
         m_MethodName: PanelKapat
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1935830076}
+        m_TargetAssemblyTypeName: KayitPopupController, Assembly-CSharp
+        m_MethodName: OtomatikKapanmayiIptalEt
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

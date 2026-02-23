@@ -36,7 +36,7 @@ public class MetrajKayitSatirUI : MonoBehaviour
 
         if (kayitTuru == "Beton") birim = " m³";
         if (kayitTuru == "Kalýp") birim = " m²";
-        if (kayitTuru == "Demir") birim = " ton";
+        if (kayitTuru == "Demir") birim = " Kg";
 
         txtToplam.text = data.toplamMetraj.ToString("F2") + birim;
 

@@ -134,7 +134,7 @@ public class MetrajSatir : MonoBehaviour
             case "Kalýp":   // <-- düzelttik
                 return " m²";
             case "Demir":
-                return " ton";
+                return " Kg";
             default:
                 return "";
         }

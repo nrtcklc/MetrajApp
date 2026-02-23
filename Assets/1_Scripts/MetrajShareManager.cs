@@ -75,9 +75,9 @@ public class MetrajShareManager : MonoBehaviour
             int lastDataRow = 3 + data.satirlar.Count;
             string toplamFormula = $"=TOPLA(F{firstDataRow}:F{lastDataRow})";
 
-            csv.AppendLine("Kayýt Adý;" + kayitAdi + ";Genel Toplam (ton);" + toplamFormula);
+            csv.AppendLine("Kayýt Adý;" + kayitAdi + ";Genel Toplam (Kg);" + toplamFormula);
             csv.AppendLine("");
-            csv.AppendLine("Ýmalat;Benzer;Adet;Çap;Boy;Sonuç (ton)");
+            csv.AppendLine("Ýmalat;Çap;Benzer;Adet;Boy;Sonuç (Kg)");
 
             for (int i = 0; i < data.satirlar.Count; i++)
             {
@@ -87,9 +87,9 @@ public class MetrajShareManager : MonoBehaviour
 
                 csv.AppendLine(
                     s.metrajAdi + ";" +
+                    s.cap.ToString("F2", turkce) + ";" +
                     s.benzer.ToString("F2", turkce) + ";" +
                     s.adet.ToString("F2", turkce) + ";" +
-                    s.cap.ToString("F2", turkce) + ";" +
                     s.boy.ToString("F2", turkce) + ";" +
                     formula
                 );

@@ -72,9 +72,12 @@ public class KalipManager : MonoBehaviour, IMetrajManager
         ToplamGuncelle();
         InputlariTemizle();
 
-        Canvas.ForceUpdateCanvases();
-        scrollRect.verticalNormalizedPosition = 1f;
-        StartCoroutine(ContentAsagiKay());
+        //Canvas.ForceUpdateCanvases();
+        //scrollRect.verticalNormalizedPosition = 1f;
+        yeni.transform.SetSiblingIndex(0);
+        yeni.SetActive(false);
+
+        StartCoroutine(SatirAnimasyon(yeni));
     }
 
     // --------------------------------------------------
@@ -228,20 +231,23 @@ public class KalipManager : MonoBehaviour, IMetrajManager
     // --------------------------------------------------
     // ANÝMASYON
     // --------------------------------------------------
-    IEnumerator ContentAsagiKay()
+    IEnumerator SatirAnimasyon(GameObject yeniSatir)
     {
-        yield return null;
+        // Layout zorla yerleþsin
+        LayoutRebuilder.ForceRebuildLayoutImmediate(listParentAnim);
+
+        yield return null; // 1 frame bekle
 
         if (listParentAnim.childCount == 0)
             yield break;
 
+        yeniSatir.SetActive(true); // artýk görünür
+
         float satirYukseklik =
             ((RectTransform)listParentAnim.GetChild(0)).rect.height;
 
-        Vector2 baslangic =
-            listParentAnim.anchoredPosition + Vector2.up * satirYukseklik;
-
         Vector2 hedef = listParentAnim.anchoredPosition;
+        Vector2 baslangic = hedef + Vector2.up * satirYukseklik;
 
         listParentAnim.anchoredPosition = baslangic;
 
@@ -250,8 +256,13 @@ public class KalipManager : MonoBehaviour, IMetrajManager
         while (t < animSure)
         {
             t += Time.deltaTime;
+
+            float oran = t / animSure;
+            oran = 1f - Mathf.Pow(1f - oran, 2f); // yumuþak bitiþ
+
             listParentAnim.anchoredPosition =
-                Vector2.Lerp(baslangic, hedef, t / animSure);
+                Vector2.Lerp(baslangic, hedef, oran);
+
             yield return null;
         }
 
