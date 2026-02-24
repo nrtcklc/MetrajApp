@@ -1005,8 +1005,11 @@ MonoBehaviour:
   txtTur: {fileID: 6126658666991728765}
   txtTarih: {fileID: 2048704997419914541}
   txtToplam: {fileID: 7214242238808200549}
+  cember: {fileID: 3779820518858834575}
   anaMenuManager: {fileID: 0}
-  betonPanelIndex: 2
+  betonManager: {fileID: 0}
+  kalipManager: {fileID: 0}
+  demirManager: {fileID: 0}
 --- !u!114 &88769438319223879
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1548,3 +1551,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MetrsajBasiliTut
   doldurulacakDaire: {fileID: 8742689009951781952}
+  cember: {fileID: 0}

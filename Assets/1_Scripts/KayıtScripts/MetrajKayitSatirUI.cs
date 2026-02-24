@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro;
 
+
 public class MetrajKayitSatirUI : MonoBehaviour
 {
     public TMP_Text txtKayitAdi;
@@ -13,6 +14,8 @@ public class MetrajKayitSatirUI : MonoBehaviour
     private string kayitTuru;
 
     private MetrajKayitManager kayitManager;
+
+    public GameObject cember;
 
     [SerializeField] private AnaMenuManager anaMenuManager;
 
@@ -83,4 +86,6 @@ public class MetrajKayitSatirUI : MonoBehaviour
         kayitManager.KayitSil(kayitId);
         Destroy(gameObject);
     }
+
+
 }

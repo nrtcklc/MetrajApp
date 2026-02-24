@@ -4,50 +4,69 @@ using UnityEngine.UI;
 
 public class MetrajBasiliTut : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
-    [SerializeField]
-    Image doldurulacakDaire;
+    [SerializeField] Image doldurulacakDaire;
 
-    bool butonbasilimi;
+    bool basiliMi = false;
 
-    float basilitutmaSuresi;
-    float toplamBasilacakSure = 1f;
+    float sure = 0f;
+    float hedefSure = 1f;
 
-    MetrajKayitSatirUI metrajKayitSatirUi;
+    MetrajKayitSatirUI satirUI;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    void Awake()
     {
+        sure = 0f;
+        basiliMi = false;
 
+        doldurulacakDaire.fillAmount = 0f;
+        doldurulacakDaire.gameObject.SetActive(false);
     }
+
     void Update()
     {
-        if (butonbasilimi)
+        if (basiliMi)
         {
-            basilitutmaSuresi += Time.deltaTime;
-            if (basilitutmaSuresi >= toplamBasilacakSure)
-            {
-                butonbasilimi = false;
-                metrajKayitSatirUi = GetComponentInParent<MetrajKayitSatirUI>();
-                metrajKayitSatirUi.Sil();
-            }
-            doldurulacakDaire.fillAmount = basilitutmaSuresi / toplamBasilacakSure;
+            if (!doldurulacakDaire.gameObject.activeSelf)
+                doldurulacakDaire.gameObject.SetActive(true);
+
+            sure += Time.deltaTime;
         }
-        if (!butonbasilimi)
+        else
         {
-            basilitutmaSuresi -= Time.deltaTime;
-            if (basilitutmaSuresi <= 0)
-            {
-                basilitutmaSuresi = 0;
-            }
-            doldurulacakDaire.fillAmount = basilitutmaSuresi / toplamBasilacakSure;
+            if (sure > 0f)
+                sure -= Time.deltaTime;
+        }
+
+        sure = Mathf.Clamp(sure, 0f, hedefSure);
+
+        doldurulacakDaire.fillAmount = sure / hedefSure;
+
+        if (sure <= 0f && !basiliMi)
+        {
+            doldurulacakDaire.gameObject.SetActive(false);
+        }
+
+        if (sure >= hedefSure)
+        {
+            sure = 0f;
+            basiliMi = false;
+            doldurulacakDaire.fillAmount = 0f;
+            doldurulacakDaire.gameObject.SetActive(false);
+
+            if (satirUI == null)
+                satirUI = GetComponentInParent<MetrajKayitSatirUI>();
+
+            satirUI.Sil();
         }
     }
+
     public void OnPointerDown(PointerEventData eventData)
     {
-        butonbasilimi = true;
+        basiliMi = true;
     }
+
     public void OnPointerUp(PointerEventData eventData)
     {
-        butonbasilimi = false;
+        basiliMi = false;
     }
 }
