@@ -34,7 +34,7 @@ public class DemirManager : MonoBehaviour, IMetrajManager
 
 
     private List<int> mevcutCaplar = new List<int>()
-    { 8, 10, 12, 14, 16, 18, 20, 22, 25, 26, 28, 32, 34, 36, 38, 40 };
+    { 8, 10, 12, 14, 16, 18, 20, 22, 24, 25, 26, 28, 30, 32, 34, 36};
 
     private int varsayilanCap = 10;
 

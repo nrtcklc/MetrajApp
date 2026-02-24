@@ -99,4 +99,17 @@ public class MetrajKayitManager : MonoBehaviour
             share.kayitData = kayit;
         }
     }
+    // --------------------
+    // TÜM KAYITLARI SÝL (JSON kalýr, içi boþalýr)
+    // --------------------
+    public void TumKayitlariSil()
+    {
+        kayitList.kayitlar.Clear();  // Listedeki tüm kayýtlarý temizle
+
+        Kaydet();                   // JSON dosyasýný boþ liste olarak güncelle
+
+        ListeyiDoldur();            // UI’yý yenile (otomatik boþ olur)
+
+        Debug.Log("Tüm kayýtlar temizlendi.");
+    }
 }

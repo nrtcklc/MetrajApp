@@ -58,11 +58,13 @@ public class MetrajBasiliTut : MonoBehaviour, IPointerDownHandler, IPointerUpHan
 
             satirUI.Sil();
         }
+        Debug.Log("Update çalýþýyor");
     }
 
     public void OnPointerDown(PointerEventData eventData)
     {
         basiliMi = true;
+        Debug.Log("Basildi");
     }
 
     public void OnPointerUp(PointerEventData eventData)

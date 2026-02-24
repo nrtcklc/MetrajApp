@@ -9,7 +9,7 @@ public class LoadingScreen : MonoBehaviour
     public Slider loadingSlider;
     public TMP_Text percentText;     // Text → TMP_Text
     public TMP_Text loadingText;     // Text → TMP_Text
-    public float minLoadTime = 3f;
+    public float minLoadTime = 1f;
 
     private void Start()
     {
