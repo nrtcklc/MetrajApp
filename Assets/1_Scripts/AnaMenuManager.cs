@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;   
 
 public class AnaMenuManager : MonoBehaviour
 {
@@ -15,6 +16,9 @@ public class AnaMenuManager : MonoBehaviour
     public RectTransform obje7;
 
     private int aktifPanelIndex;
+
+
+    public GameObject popupObject;
 
     void Start()
     {
@@ -123,4 +127,15 @@ public class AnaMenuManager : MonoBehaviour
         }
     }
 
+    public void ShowPopup()
+    { 
+        popupObject.SetActive(true);
+        StartCoroutine(FadeRoutine());
+    }
+
+    IEnumerator FadeRoutine()
+    {
+        yield return new WaitForSeconds(1.5f);
+        popupObject.SetActive(false);
+    }
 }

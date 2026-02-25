@@ -1,20 +1,19 @@
 using UnityEngine;
+using System.Collections.Generic;
 using UnityEngine.InputSystem;
 
 public class ExitManager : MonoBehaviour
 {
-    [Header("Unsaved Tables")]
-    public bool betonUnsaved = false;
-    public bool kalipUnsaved = false;
-    public bool demirUnsaved = false;
-    public bool hakedisUnsaved = false;
+    [Header("Unsaved Content Parents")]
+    [Tooltip("ScrollView Content objelerini buraya ekleyin")]
+    public List<Transform> unsavedContents = new List<Transform>();
 
     [Header("UI")]
     public GameObject exitWarningPanel;
 
     void Update()
     {
-        // Android back tuþu
+        // Android geri tuþu
         if (Keyboard.current != null && Keyboard.current.escapeKey.wasPressedThisFrame)
         {
             TryExit();
@@ -38,32 +37,17 @@ public class ExitManager : MonoBehaviour
 
     bool HasAnyUnsavedData()
     {
-        return betonUnsaved || kalipUnsaved || demirUnsaved || hakedisUnsaved;
+        foreach (Transform content in unsavedContents)
+        {
+            if (content == null)
+                continue;
+
+            if (content.childCount > 0)
+                return true;
+        }
+
+        return false;
     }
-
-    // =========================
-    // BETON
-    // =========================
-    public void SetBetonUnsavedTrue() => betonUnsaved = true;
-    public void SetBetonUnsavedFalse() => betonUnsaved = false;
-
-    // =========================
-    // KALIP
-    // =========================
-    public void SetKalipUnsavedTrue() => kalipUnsaved = true;
-    public void SetKalipUnsavedFalse() => kalipUnsaved = false;
-
-    // =========================
-    // DEMÝR
-    // =========================
-    public void SetDemirUnsavedTrue() => demirUnsaved = true;
-    public void SetDemirUnsavedFalse() => demirUnsaved = false;
-
-    // =========================
-    // HAKEDÝÞ
-    // =========================
-    public void SetHakedisUnsavedTrue() => hakedisUnsaved = true;
-    public void SetHakedisUnsavedFalse() => hakedisUnsaved = false;
 
     // =========================
     // PANEL BUTONLARI

@@ -111,18 +111,8 @@ public class SettingsManager : MonoBehaviour
 
     public void SendEmail()
     {
-        string email = "nurtac85@gmail.com";   // gönderilecek e-posta
-        string subject = "Metraj Hakediþ Uygulamasý Hakkýnda";
-        string body = "Merhaba Nurtaç Bey, ";
-
-        // URL encode ile boþluk ve özel karakterleri güvenli hale getirelim
-        subject = UnityWebRequest.EscapeURL(subject);
-        body = UnityWebRequest.EscapeURL(body);
-
-        // mailto linki oluþtur
-        string mailto = $"mailto:{email}?subject={subject}&body={body}";
-
-        // varsayýlan e-posta uygulamasýný aç
+        string email = "nurtac85@gmail.com";
+        string mailto = $"mailto:{email}";
         Application.OpenURL(mailto);
     }
 
