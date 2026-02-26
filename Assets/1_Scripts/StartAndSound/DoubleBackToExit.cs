@@ -18,7 +18,7 @@ public class DoubleBackToExit : MonoBehaviour
             else
             {
                 backPressTime = Time.time;
-                ShowToast("Uygulamayý kapatmak için 2 kez geri tuþuna basýn");
+                ShowToast("Uygulamayý kapatmak için 2 kez geri tuþuna basýn.");
             }
         }
     }

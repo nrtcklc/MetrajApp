@@ -52,13 +52,38 @@ public class ExitManager : MonoBehaviour
     // =========================
     // PANEL BUTONLARI
     // =========================
-    public void ConfirmExit()
-    {
-        Application.Quit();
-    }
-
     public void CancelExit()
     {
         exitWarningPanel.SetActive(false);
+    }
+    public void ConfirmExit()
+    {
+        ShowToast("Uygulamayý kapatmak için 2 kez geri tuþuna basýn.");
+        Application.Quit();
+    }
+
+    void ShowToast(string message)
+    {
+#if UNITY_ANDROID && !UNITY_EDITOR
+    using (AndroidJavaClass unityPlayer = new AndroidJavaClass("com.unity3d.player.UnityPlayer"))
+    {
+        AndroidJavaObject currentActivity = unityPlayer.GetStatic<AndroidJavaObject>("currentActivity");
+        AndroidJavaClass toastClass = new AndroidJavaClass("android.widget.Toast");
+
+        currentActivity.Call("runOnUiThread", new AndroidJavaRunnable(() =>
+        {
+            AndroidJavaObject context = currentActivity.Call<AndroidJavaObject>("getApplicationContext");
+            AndroidJavaObject toastObject = toastClass.CallStatic<AndroidJavaObject>(
+                "makeText",
+                context,
+                message,
+                toastClass.GetStatic<int>("LENGTH_SHORT")
+            );
+            toastObject.Call("show");
+        }));
+    }
+#endif
+        Debug.Log(message);
+
     }
 }

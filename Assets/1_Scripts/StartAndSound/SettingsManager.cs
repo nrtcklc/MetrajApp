@@ -11,6 +11,9 @@ public class SettingsManager : MonoBehaviour
 
     public GameObject volumeOff, volume1, volume2, volume3;
 
+    private string packageName = "com.NurtacKilic.MetrajHakedis";
+    private string playStoreUrl = "https://play.google.com/store/apps/details?id=com.NurtacKilic.MetrajHakedis";
+
     private void Start()
     {
         // Slider sýnýrlarý
@@ -108,12 +111,39 @@ public class SettingsManager : MonoBehaviour
     {
         Application.OpenURL("https://join.skype.com/invite/nxQe1Tgz3PFE");
     }
-
     public void SendEmail()
     {
         string email = "nurtac85@gmail.com";
         string mailto = $"mailto:{email}";
         Application.OpenURL(mailto);
+    }
+
+    public void OpenStoreForRating()
+    {
+#if UNITY_ANDROID
+        Application.OpenURL("market://details?id=" + packageName);
+#else
+        Application.OpenURL("https://play.google.com/store/apps/details?id=" + packageName);
+#endif
+    }
+    public void ShareApplication()
+    {
+#if UNITY_ANDROID
+        AndroidJavaObject intentObject = new AndroidJavaObject("android.content.Intent");
+
+        intentObject.Call<AndroidJavaObject>("setAction", "android.intent.action.SEND");
+
+        intentObject.Call<AndroidJavaObject>("putExtra",
+            "android.intent.extra.TEXT",
+            "Metraj & Hakediþ hesabý için kullandýðým uygulama:\n" + playStoreUrl);
+
+        intentObject.Call<AndroidJavaObject>("setType", "text/plain");
+
+        AndroidJavaClass unity = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
+        AndroidJavaObject currentActivity = unity.GetStatic<AndroidJavaObject>("currentActivity");
+
+        currentActivity.Call("startActivity", intentObject);
+#endif
     }
 
 }
