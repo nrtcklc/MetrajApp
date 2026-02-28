@@ -13,6 +13,7 @@ public class HakedisData
     public int hakedisNo;
     public string donem;
     public string tarih;
+    public string varsayilanParaBirimi;
 
     // Kalemler
     public List<HakedisMetrajItem> metrajlar = new List<HakedisMetrajItem>();
@@ -25,6 +26,7 @@ public class HakedisData
     public double araToplam;
     public double toplamKesinti;
     public double genelToplam;
+    public double kdvOran = 0;
 }
 
 [Serializable]

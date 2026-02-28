@@ -7,6 +7,9 @@ public class HakedisUIController : MonoBehaviour
     [Header("Manager")]
     public HakedisManager manager;
 
+    [Header("Varsayýlan Para Birimi")]
+    public TMP_Dropdown varsayilanParaDropdown;
+
     [Header("Hakediþ Bilgileri")]
     public TMP_InputField anaFirmaInput;
     public TMP_InputField altYukleniciInput;
@@ -52,13 +55,28 @@ public class HakedisUIController : MonoBehaviour
     public TMP_Dropdown teminatParaDropdown;
 
     public TMP_InputField kdvInput;
-    public TMP_Dropdown kdvParaDropdown;
 
     [Header("Sonuç")]
     public TMP_Text sonucText;
 
+    [Header("Kur Popup")]
+    public KurPopupController kurPopup;
+
     // ===================================================
-    // FÝRMA GÜNCELLE
+    // VARSAYILAN PARA BÝRÝMÝ
+    // ===================================================
+    public void VarsayilanParaDegisti()
+    {
+        string pb = varsayilanParaDropdown
+            .options[varsayilanParaDropdown.value].text;
+
+        manager.VarsayilanParaBirimiAyarla(pb);
+
+        Guncelle();
+    }
+
+    // ===================================================
+    // FÝRMA
     // ===================================================
     public void FirmaGuncelle()
     {
@@ -76,6 +94,7 @@ public class HakedisUIController : MonoBehaviour
 
         Guncelle();
     }
+
     public void HakedisBilgileriniGuncelle()
     {
         int no = 0;
@@ -92,25 +111,19 @@ public class HakedisUIController : MonoBehaviour
     }
 
     // ===================================================
-    // ÖNCEKÝ METRAJDAN EKLE
+    // METRAJ
     // ===================================================
     string BirimGetir(string kayitTuru)
     {
         switch (kayitTuru)
         {
-            case "Beton":
-                return "m³";
-
-            case "Kalýp":
-                return "m²";
-
-            case "Demir":
-                return "kg";
-
-            default:
-                return "";
+            case "Beton": return "m³";
+            case "Kalýp": return "m²";
+            case "Demir": return "kg";
+            default: return "";
         }
     }
+
     public void OncekiMetrajdanEkle()
     {
         if (kayitliMetrajlar == null || kayitliMetrajlar.Count == 0)
@@ -124,30 +137,32 @@ public class HakedisUIController : MonoBehaviour
 
         double fiyat = 0;
         double.TryParse(birimFiyatMetraInput.text, out fiyat);
-
-        if (fiyat <= 0)
-            return;
+        if (fiyat <= 0) return;
 
         string birim = BirimGetir(secilen.kayitTuru);
 
         manager.MetrajEkle(
-            secilen.kayitAdi,        // Ad otomatik
-            secilen.toplamMetraj,    // Miktar otomatik
-            birim,                   // Türden türetilmiþ birim
-            fiyat,                   // Elle girilen fiyat
+            secilen.kayitAdi,
+            secilen.toplamMetraj,
+            birim,
+            fiyat,
             paraBirimiMetrajDropdown.options[
-                paraBirimiMetrajDropdown.value
-            ].text
+                paraBirimiMetrajDropdown.value].text
         );
 
         birimFiyatMetraInput.text = "";
 
+        string secilenPB =
+    paraBirimiMetrajDropdown.options[
+        paraBirimiMetrajDropdown.value].text;
+
+        if (secilenPB != manager.aktif.varsayilanParaBirimi)
+        {
+            kurPopup.PopupAc();
+        }
         Guncelle();
     }
 
-    // ===================================================
-    // MANUEL EKLE
-    // ===================================================
     public void ManuelEkle()
     {
         double miktar = 0;
@@ -164,39 +179,23 @@ public class HakedisUIController : MonoBehaviour
             paraBirimiDropdown.options[paraBirimiDropdown.value].text
         );
 
-        // INPUT TEMÝZLE
         isKalemiAdiInput.text = "";
         miktarInput.text = "";
         birimFiyatInput.text = "";
 
-        Guncelle();
-    }
+        string secilenPB =
+        paraBirimiDropdown.options[paraBirimiDropdown.value].text;
 
-    // ===================================================
-    // ÖNCEKÝ HAKEDÝÞTEN KESÝNTÝ
-    // ===================================================
-    public void OncekiHakedistenKesintiEkle()
-    {
-        if (kayitliHakedisler == null || kayitliHakedisler.Count == 0)
-            return;
-
-        int index = oncekiHakedisDropdown.value;
-        if (index >= kayitliHakedisler.Count)
-            return;
-
-        HakedisData secilen = kayitliHakedisler[index];
-
-        manager.KesintiGuncelle(
-            "Önceki Hakediþ",
-            secilen.genelToplam,
-            "TL"
-        );
+        if (secilenPB != manager.aktif.varsayilanParaBirimi)
+        {
+            kurPopup.PopupAc();
+        }
 
         Guncelle();
     }
 
     // ===================================================
-    // TÜM KESÝNTÝLERÝ GÜNCELLE
+    // KESÝNTÝLER
     // ===================================================
     public void KesintileriGuncelle()
     {
@@ -207,13 +206,11 @@ public class HakedisUIController : MonoBehaviour
         KesintiIsle("Diðer", digerInput, digerParaDropdown);
         KesintiIsle("Teminat", teminatInput, teminatParaDropdown);
 
+        // KDV artýk sadece oran alýyor
         double kdvOran = 0;
         double.TryParse(kdvInput.text, out kdvOran);
+        manager.KdvGuncelle(kdvOran);
 
-        manager.KdvGuncelle(
-            kdvOran,
-            kdvParaDropdown.options[kdvParaDropdown.value].text
-        );
 
         Guncelle();
     }
@@ -223,17 +220,28 @@ public class HakedisUIController : MonoBehaviour
         double tutar = 0;
         double.TryParse(input.text, out tutar);
 
+        string secilenPB =
+            paraDropdown.options[paraDropdown.value].text;
+
+        if (secilenPB != manager.aktif.varsayilanParaBirimi)
+        {
+            kurPopup.PopupAc();
+        }
+
         manager.KesintiGuncelle(
             ad,
             tutar,
-            paraDropdown.options[paraDropdown.value].text
+            secilenPB
         );
     }
 
+    // ===================================================
+    // GENEL GÜNCELLE
+    // ===================================================
     void Guncelle()
     {
-        HakedisBilgileriniGuncelle();  // önce bilgileri yaz
-        manager.Hesapla();             // sonra hesapla
+        HakedisBilgileriniGuncelle();
+        manager.Hesapla();
         sonucText.text = manager.MetinOlustur();
     }
 }
